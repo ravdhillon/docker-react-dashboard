@@ -1,0 +1,3 @@
+# Avoid following folders in repo
+node_modules
+build

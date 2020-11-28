@@ -1,0 +1,13 @@
+# For Development env. only
+FROM node:alpine
+
+WORKDIR '/app'
+RUN CI=true
+
+COPY package.json .
+RUN npm install
+
+# copy everything from src directory.
+COPY . .
+
+CMD ["npm", "run", "start"]
