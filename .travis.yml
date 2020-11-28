@@ -1,0 +1,17 @@
+# file name starts with dot (.)
+sudo: required # Permissions
+# need to install a copy of docker whereever Travis will run the build
+services:
+  - docker
+
+# This section list all the steps(commands) which gets executed before our test suite or deploy the project.
+before_install:
+  - docker build -t fatehlabs/docker-react-dashboard -f Dockerfile.dev . # we need to tag the image, 
+  # because we don't know the Ids. It's all inside Travis.
+
+# Commands which needs to be executed to run test suite.
+# TravisCI will watch output of these commands and if there is any status code other than 0, it will mark as test failed. 
+script:
+  - docker run fatehlabs/docker-react-dashboard npm run test -- --coverage # we are using -- -- coverage, because we want
+  # npm run test to actually exit. Default behaviour of npm run test is not Exit, but just hangs in there, waiting for user
+  # input.
