@@ -14,3 +14,15 @@ before_install:
 # TravisCI will watch output of these commands and if there is any status code other than 0, it will mark as test failed. 
 script:
   - docker run -e CI=true fatehlabs/docker-react-dashboard npm run test
+deploy:
+  provider: elasticbeanstalk # Travis CI is preconfigured for AWS
+  region: "us-east-1"
+  app: "docker-react-dashboard"
+  env: "DockerReactDashboard-env"
+  bucket_name: "elasticbeanstalk-us-east-1-423437890216" # Now this bucket will be used for all the ElasticBeanstalk applications we created.
+  bucket_path: "docker-react-dashboard" # This is the folder for this specific application
+  on:
+    branch: master
+  access_key_id: "$AWS_ACCESS_KEY"
+  secret_access_key:
+    secure: "$AWS_SECRET_KEY"
