@@ -1,3 +1,4 @@
+language: generic
 # file name starts with dot (.)
 sudo: required # Permissions
 # need to install a copy of docker whereever Travis will run the build
