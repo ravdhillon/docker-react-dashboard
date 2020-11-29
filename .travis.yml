@@ -12,6 +12,4 @@ before_install:
 # Commands which needs to be executed to run test suite.
 # TravisCI will watch output of these commands and if there is any status code other than 0, it will mark as test failed. 
 script:
-  - docker run fatehlabs/docker-react-dashboard npm run test -- --coverage # we are using -- -- coverage, because we want
-  # npm run test to actually exit. Default behaviour of npm run test is not Exit, but just hangs in there, waiting for user
-  # input.
+  - docker run -e CI=true fatehlabs/docker-react-dashboard npm run test
