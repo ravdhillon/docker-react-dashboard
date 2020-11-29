@@ -10,5 +10,6 @@ RUN npm run build
 
 # 1. Run Phase. 2nd FROM statement will start new phase
 FROM nginx
-
+# This is for our ElasticBeanstalk container.
+EXPOSE 80
 COPY --from=builder /app/build /usr/share/nginx/html
